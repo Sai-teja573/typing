@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Typing Test English</title>
+		<meta charset="utf-8" />
+		<!-- Style -->
+		<link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+		<!-- Script -->
+		<script defer type="module" src="./assets/js/typing-test.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="heading">Typing Test English</div>
+			<div class="header">
+				<div class="info-box">
+					<div class="label">WPM</div>
+					<div id="wpm">0</div>
+				</div>
+				<div class="info-box">
+					<div class="label">Typos</div>
+					<div id="errors">0</div>
+				</div>
+				<div class="info-box">
+					<div class="label">Time (Second)</div>
+					<div id="time">0</div>
+				</div>
+				<div class="info-box">
+					<div class="label">Accuracy (%)</div>
+					<div id="accuracy">100</div>
+				</div>
+			</div>
+			<div id="type-text"></div>
+			<textarea id="textarea" autofocus="true" placeholder="Start typing ..." rows="4"></textarea>
+		</div>
+	</body>
+</html>
