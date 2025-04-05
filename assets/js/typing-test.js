@@ -16,7 +16,7 @@ let TEXT = '';
 let TIME_LIMIT = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('https://type.fit/api/quotes')
+  fetch('https://baconipsum.com/api/?type=meat-and-filler&sentences=1')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -24,15 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json();
     })
     .then(data => {
-      const randomIndex = Math.trunc(Math.random() * data.length);
-      TEXT = data[randomIndex].text;
+      TEXT = data[0];
       TIME_LIMIT = Math.trunc(TEXT.length * 0.5);
       initializeTest({ timeLimit: TIME_LIMIT, text: TEXT });
       textArea.addEventListener('input', update);
     })
     .catch(error => {
       console.error('Fetch error:', error);
-      // Handle the error accordingly, e.g., display a message to the user
+      typeText.innerHTML = 'Failed to load text. Please try again.';
     });
 });
 
@@ -77,6 +76,10 @@ function updateCharactersStatus() {
 }
 
 function updateAccuracy() {
+  if (typedCharacter === 0) {
+    accuracyText.innerHTML = 100;
+    return;
+  }
   accuracyText.innerHTML = Math.round(((typedCharacter - errors) / typedCharacter) * 100);
 }
 
@@ -86,6 +89,7 @@ function updateErrors() {
 }
 
 function updateWpm() {
+  if (timeElapsed === 0) return;
   wpmText.innerHTML = Math.round((typedCharacter / 5 / timeElapsed) * 60);
 }
 
