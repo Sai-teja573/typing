@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Speed Typing Master</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Style -->
+		<link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+		<!-- Script -->
+		<script defer type="module" src="./assets/js/typing-test.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="top-bar">
+				<div></div>
+				<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+					<i class="fas fa-moon"></i>
+				</button>
+			</div>
+			
+			<div class="heading">Speed <span>Typing</span> Master</div>
+			
+			<div class="language-selector">
+				<label for="language-select">Select Language:</label>
+				<select id="language-select">
+					<option value="en" selected>English</option>
+					<option value="es">Spanish</option>
+					<option value="fr">French</option>
+					<option value="de">German</option>
+				</select>
+				<button id="refresh-text" class="btn primary-btn">
+					<i class="fas fa-sync-alt"></i> New Text
+				</button>
+			</div>
+			
+			<!-- Status message div for API status -->
+			<div id="api-status" class="api-status"></div>
+			
+			<div class="stats-container">
+				<div class="stat-card">
+					<div class="stat-label">Words Per Minute</div>
+					<div id="wpm" class="stat-value">0</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Typos</div>
+					<div id="errors" class="stat-value">0</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Time Left</div>
+					<div id="time" class="stat-value">0</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Accuracy</div>
+					<div id="accuracy" class="stat-value">100</div>
+				</div>
+			</div>
+			
+			<div class="typing-area">
+				<div id="type-text"></div>
+				<textarea id="textarea" autofocus="true" placeholder="Start typing here..." rows="4"></textarea>
+			</div>
+			
+			<div class="controls">
+				<button id="restart-test" class="btn danger-btn">
+					<i class="fas fa-redo"></i> Restart Test
+				</button>
+			</div>
+			
+			<div class="history-section">
+				<h2>Your Typing History</h2>
+				<div id="history-records"></div>
+			</div>
+		</div>
+	</body>
+</html>
