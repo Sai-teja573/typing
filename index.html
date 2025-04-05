@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Speed Typing Master</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Style -->
+		<link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+		<!-- Script -->
+		<script defer type="module" src="./assets/js/typing-test.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="top-bar">
+				<div></div>
+				<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+					<i class="fas fa-moon"></i>
+				</button>
+			</div>
+			
+			<div class="heading">Speed <span>Typing</span> Master</div>
+			
+			<div class="language-selector">
+				<label for="language-select">Select Language:</label>
+				<select id="language-select">
+					<option value="en" selected>English</option>
+					<option value="es">Spanish</option>
+					<option value="fr">French</option>
+					<option value="de">German</option>
+				</select>
+				<button id="refresh-text" class="btn primary-btn">
+					<i class="fas fa-sync-alt"></i> New Text
+				</button>
+			</div>
+			
+			<!-- Status message div for API status -->
+			<div id="api-status" class="api-status"></div>
+			
+			<div class="stats-container">
+				<div class="stat-card">
+					<div class="stat-label">Words Per Minute</div>
+					<div id="wpm" class="stat-value">0</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Typos</div>
+					<div id="errors" class="stat-value">0</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Time Left</div>
+					<div id="time" class="stat-value">0</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-label">Accuracy</div>
+					<div id="accuracy" class="stat-value">100</div>
+				</div>
+			</div>
+			
+			<div class="typing-area">
+				<div id="type-text"></div>
+				<textarea id="textarea" autofocus="true" placeholder="Start typing here..." rows="4"></textarea>
+			</div>
+			
+			<!-- Virtual Keyboard -->
+			<div class="keyborad">
+				<div class="keyboadr-inner">
+					<!-- Row 1 -->
+					<div class="keyboard-row">
+						<div class="key" data-key="`">
+							<div class="key-content">`</div>
+						</div>
+						<div class="key" data-key="1">
+							<div class="key-content">1</div>
+						</div>
+						<div class="key" data-key="2">
+							<div class="key-content">2</div>
+						</div>
+						<div class="key" data-key="3">
+							<div class="key-content">3</div>
+						</div>
+						<div class="key" data-key="4">
+							<div class="key-content">4</div>
+						</div>
+						<div class="key" data-key="5">
+							<div class="key-content">5</div>
+						</div>
+						<div class="key" data-key="6">
+							<div class="key-content">6</div>
+						</div>
+						<div class="key" data-key="7">
+							<div class="key-content">7</div>
+						</div>
+						<div class="key" data-key="8">
+							<div class="key-content">8</div>
+						</div>
+						<div class="key" data-key="9">
+							<div class="key-content">9</div>
+						</div>
+						<div class="key" data-key="0">
+							<div class="key-content">0</div>
+						</div>
+						<div class="key" data-key="-">
+							<div class="key-content">-</div>
+						</div>
+						<div class="key" data-key="=">
+							<div class="key-content">=</div>
+						</div>
+						<div class="key key-wide" data-key="Backspace">
+							<div class="key-content">⌫</div>
+						</div>
+					</div>
+					
+					<!-- Row 2 -->
+					<div class="keyboard-row">
+						<div class="key key-wider" data-key="Tab">
+							<div class="key-content">Tab</div>
+						</div>
+						<div class="key" data-key="q">
+							<div class="key-content">Q</div>
+						</div>
+						<div class="key" data-key="w">
+							<div class="key-content">W</div>
+						</div>
+						<div class="key" data-key="e">
+							<div class="key-content">E</div>
+						</div>
+						<div class="key" data-key="r">
+							<div class="key-content">R</div>
+						</div>
+						<div class="key" data-key="t">
+							<div class="key-content">T</div>
+						</div>
+						<div class="key" data-key="y">
+							<div class="key-content">Y</div>
+						</div>
+						<div class="key" data-key="u">
+							<div class="key-content">U</div>
+						</div>
+						<div class="key" data-key="i">
+							<div class="key-content">I</div>
+						</div>
+						<div class="key" data-key="o">
+							<div class="key-content">O</div>
+						</div>
+						<div class="key" data-key="p">
+							<div class="key-content">P</div>
+						</div>
+						<div class="key" data-key="[">
+							<div class="key-content">[</div>
+						</div>
+						<div class="key" data-key="]">
+							<div class="key-content">]</div>
+						</div>
+						<div class="key" data-key="\">
+							<div class="key-content">\</div>
+						</div>
+					</div>
+					
+					<!-- Row 3 -->
+					<div class="keyboard-row">
+						<div class="key key-wider" data-key="CapsLock">
+							<div class="key-content">Caps</div>
+						</div>
+						<div class="key" data-key="a">
+							<div class="key-content">A</div>
+						</div>
+						<div class="key" data-key="s">
+							<div class="key-content">S</div>
+						</div>
+						<div class="key" data-key="d">
+							<div class="key-content">D</div>
+						</div>
+						<div class="key" data-key="f">
+							<div class="key-content">F</div>
+						</div>
+						<div class="key" data-key="g">
+							<div class="key-content">G</div>
+						</div>
+						<div class="key" data-key="h">
+							<div class="key-content">H</div>
+						</div>
+						<div class="key" data-key="j">
+							<div class="key-content">J</div>
+						</div>
+						<div class="key" data-key="k">
+							<div class="key-content">K</div>
+						</div>
+						<div class="key" data-key="l">
+							<div class="key-content">L</div>
+						</div>
+						<div class="key" data-key=";">
+							<div class="key-content">;</div>
+						</div>
+						<div class="key" data-key="'">
+							<div class="key-content">'</div>
+						</div>
+						<div class="key key-wider" data-key="Enter">
+							<div class="key-content">Enter</div>
+						</div>
+					</div>
+					
+					<!-- Row 4 -->
+					<div class="keyboard-row">
+						<div class="key key-widest" data-key="Shift">
+							<div class="key-content">Shift</div>
+						</div>
+						<div class="key" data-key="z">
+							<div class="key-content">Z</div>
+						</div>
+						<div class="key" data-key="x">
+							<div class="key-content">X</div>
+						</div>
+						<div class="key" data-key="c">
+							<div class="key-content">C</div>
+						</div>
+						<div class="key" data-key="v">
+							<div class="key-content">V</div>
+						</div>
+						<div class="key" data-key="b">
+							<div class="key-content">B</div>
+						</div>
+						<div class="key" data-key="n">
+							<div class="key-content">N</div>
+						</div>
+						<div class="key" data-key="m">
+							<div class="key-content">M</div>
+						</div>
+						<div class="key" data-key=",">
+							<div class="key-content">,</div>
+						</div>
+						<div class="key" data-key=".">
+							<div class="key-content">.</div>
+						</div>
+						<div class="key" data-key="/">
+							<div class="key-content">/</div>
+						</div>
+						<div class="key key-widest" data-key="Shift">
+							<div class="key-content">Shift</div>
+						</div>
+					</div>
+					
+					<!-- Row 5 -->
+					<div class="keyboard-row">
+						<div class="key" data-key="Control">
+							<div class="key-content">Ctrl</div>
+						</div>
+						<div class="key" data-key="Meta">
+							<div class="key-content">Win</div>
+						</div>
+						<div class="key" data-key="Alt">
+							<div class="key-content">Alt</div>
+						</div>
+						<div class="key key-space" data-key=" ">
+							<div class="key-content">Space</div>
+						</div>
+						<div class="key" data-key="Alt">
+							<div class="key-content">Alt</div>
+						</div>
+						<div class="key" data-key="Meta">
+							<div class="key-content">Win</div>
+						</div>
+						<div class="key" data-key="Control">
+							<div class="key-content">Ctrl</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="controls">
+				<button id="restart-test" class="btn danger-btn">
+					<i class="fas fa-redo"></i> Restart Test
+				</button>
+			</div>
+			
+			<div class="history-section">
+				<h2>Your Typing History</h2>
+				<div id="history-records"></div>
+			</div>
+		</div>
+	</body>
+</html>
